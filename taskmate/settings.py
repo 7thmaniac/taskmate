@@ -100,7 +100,7 @@ DATABASES = {
     #     'HOST': env("DJANGO_DATABASE_HOST"),           # Set to your database server (or use an IP)
     #     'PORT': env("DJANGO_DATABASE_PORT"),                # Default PostgreSQL port
     # }
-    "default": dj_database_url.config(default=env("DATABASE_URL"))
+    "default": dj_database_url.config(default=env("DJANGO_DATABASE_URL"))
 }
 
 # postgresql://postgres:ZrOdTWrtnNaUFKNBHnhbRqtwHzlrcGwG@junction.proxy.rlwy.net:59175/railway
