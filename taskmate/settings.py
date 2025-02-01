@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
 import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -52,8 +51,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -91,23 +90,18 @@ WSGI_APPLICATION = 'taskmate.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-if env("DJANGO_PHASE")=="Dev":
-    DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env("DJANGO_DATABASE_NAME"),  # Replace with your database name
-        'USER': env("DJANGO_DATABASE_USER"),       # Replace with your PostgreSQL username
-        'PASSWORD': env("DJANGO_DATABASE_PASSWORD"),   # Replace with your PostgreSQL password
-        'HOST': env("DJANGO_DATABASE_HOST"),           # Set to your database server (or use an IP)
-        'PORT': env("DJANGO_DATABASE_PORT"),                # Default PostgreSQL port
+        'NAME': env("PGDATABASE"),  # Replace with your database name
+        'USER': env("PGUSER"),       # Replace with your PostgreSQL username
+        'PASSWORD': env("PGPASSWORD"),   # Replace with your PostgreSQL password
+        'HOST': env("PGHOST"),           # Set to your database server (or use an IP)
+        'PORT': env("PGPORT"),                # Default PostgreSQL port
     }
     
-    }
-else:
-    
-    DATABASES = {
-        "default": dj_database_url.config(default=env("DATABASE_PUBLIC_URL"))
-    }
+}
+
 
 # postgresql://postgres:ZrOdTWrtnNaUFKNBHnhbRqtwHzlrcGwG@junction.proxy.rlwy.net:59175/railway
 
