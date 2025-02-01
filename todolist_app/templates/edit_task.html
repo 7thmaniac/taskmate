@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load  static  %}
+{% load icon %}
+
+{% block "title" %}
+    <title>Edit Task - TaskMate</title>
+{% endblock "title" %}
+
+{% block content %}
+    <div class="container">
+        <br>
+        {% if edit_task.owner == request.user %}
+          <form method="POST" class="row">
+              {% csrf_token %}
+              <div class="col-lg-6">            
+                <input type="text" class="form-control" name="task" placeholder="{{ edit_task.task }}" value="{{ edit_task.task }}">
+                <input type="hidden" name="done" value="{{ edit_task.done }}">
+              </div>
+              <div class="col-lg-2">
+              </div>
+              <div class="col-lg-4">
+                <button type="submit" class="btn btn-primary col-lg-2">Edit</button>
+              </div>            
+            </form>
+          {% else %}
+            <p> Access Restricted!, You are not owner of this task. </p>
+          {% endif %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </div> 
+{% endblock content %}
