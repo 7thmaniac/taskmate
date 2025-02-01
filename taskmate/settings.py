@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Creating enviroment variable
 env = environ.Env()
-environ.Env.read_env(os.path.join(BASE_DIR,'/.env'))
+environ.Env.read_env(os.path.join(BASE_DIR,'taskmate/.env'))
 
 
 # Quick-start development settings - unsuitable for production
