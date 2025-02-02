@@ -29,7 +29,9 @@ SECRET_KEY = env("DJANGO_SECRET_KEY", default="fallback-secret-key")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DJANGO_DEBUG", default=False)
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["localhost","127.0.0.1","tm.up.railway.app"]
+
+CSRF_TRUSTED_ORIGINS = ["https://tm.up.railway.app"]
 
 
 # Application definition
