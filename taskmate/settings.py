@@ -91,18 +91,33 @@ WSGI_APPLICATION = 'taskmate.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env("PGDATABASE"),  # Replace with your database name
-        'USER': env("PGUSER"),       # Replace with your PostgreSQL username
-        'PASSWORD': env("PGPASSWORD"),   # Replace with your PostgreSQL password
-        'HOST': env("PGHOST"),           # Set to your database server (or use an IP)
-        'PORT': env("PGPORT"),                # Default PostgreSQL port
-    }
-    
-}
 
+
+if env("DJANGO_PHASE")=="DEV":
+    
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': env("TEST_PGDATABASE"),  # Replace with your database name
+            'USER': env("TEST_PGUSER"),       # Replace with your PostgreSQL username
+            'PASSWORD': env("TEST_PGPASSWORD"),   # Replace with your PostgreSQL password
+            'HOST': env("TEST_PGHOST"),           # Set to your database server (or use an IP)
+            'PORT': env("TEST_PGPORT"),                # Default PostgreSQL port
+        }
+        
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': env("PGDATABASE"),  # Replace with your database name
+            'USER': env("PGUSER"),       # Replace with your PostgreSQL username
+            'PASSWORD': env("PGPASSWORD"),   # Replace with your PostgreSQL password
+            'HOST': env("PGHOST"),           # Set to your database server (or use an IP)
+            'PORT': env("PGPORT"),                # Default PostgreSQL port
+        }
+        
+    }
 
 # postgresql://postgres:ZrOdTWrtnNaUFKNBHnhbRqtwHzlrcGwG@junction.proxy.rlwy.net:59175/railway
 
